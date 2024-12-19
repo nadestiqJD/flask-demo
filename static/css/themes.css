@@ -1,0 +1,78 @@
+:root{
+    --primary: #6fb34a;
+    --primary-disabled: #559136;
+
+    --bg-light: #e3e3e3;
+    --bg-light-secondary: #6f6f6f;
+    --bg-dark: #3e3e3e;
+    --bg-dark-secondary: #4a4a4a;
+
+    --secondary-light: whitesmoke;
+    --secondary-dark: #333;
+
+    --nav-light: #cdcdcd;
+    --nav-dark: #292929;
+}
+
+body{
+    background: var(--bg-light);
+}
+
+nav, footer {
+    background: var(--bg-light-secondary);
+}
+
+.btn.btn-primary{
+    background: var(--primary);
+    border-color: var(--primary);
+}
+.btn.btn-primary:active{
+    background: var(--primary-disabled);
+    border-color: var(--primary-disabled);
+}
+
+input[type=text], textarea, .card{
+    background: var(--secondary-light);
+    background-color: var(--secondary-light) !important;
+}
+
+.user_selected{
+    background: var(--bg-light-secondary) !important;
+    color: var(--primary);
+}
+.user_selected .text-muted, footer{
+    color: var(--bg-light) !important;
+}
+
+@media (prefers-color-scheme: dark){
+    body{
+        background: var(--bg-dark);
+        color: whitesmoke;
+    }
+    nav, footer {
+    background: var(--bg-dark-secondary);
+    }
+
+    input[type=text], input[type=text]:focus, textarea, textarea:focus{
+        background: var(--secondary-dark);
+        background-color: var(--secondary-dark) !important;
+        color: whitesmoke !important;
+    }
+
+    .card{
+        background: var(--nav-dark) !important;
+        color: whitesmoke;
+    }
+
+    .text-muted{
+        color: var(--nav-light) !important;
+    }
+
+    .user_selected{
+        background: var(--bg-dark-secondary) !important;
+        color: var(--primary-disabled);
+    }
+    .user_selected .text-muted, footer{
+        color: var(--bg-light) !important;
+    }
+}

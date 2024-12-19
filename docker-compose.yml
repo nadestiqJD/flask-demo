@@ -1,0 +1,14 @@
+version: '1'
+services:
+  app:
+    image: "macius/flask-demo"
+    ports:
+      - "2137:5000"
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=flaskEmailApp
+      - POSTGRES_USER=flaskEmailApp
+      - POSTGRES_DB=flaskEmailApp

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block title %}Zaimportuj adresy{% endblock %}
+
+{% block main %}
+    <h1>
+        Zaimportuj adresy email
+    </h1>
+    <form method="post" enctype=multipart/form-data>
+        <div class="mb-3">
+            <label for="file_input">Plik .csv z adresami email</label>
+            <input class="form-control" type="file" id="file_input" name="emails" accept="text/csv">
+        </div>
+        <button type="submit" class="btn btn-secondary">
+            Zaimportuj
+        </button>
+    </form>
+{% endblock %}

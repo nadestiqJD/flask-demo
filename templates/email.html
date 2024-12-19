@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% block title %}
+	Nowy email
+{% endblock %}
+
+{% block main %}
+    <h1>
+        Nowy email
+    </h1>
+    <form method="post" id="sendEmailForm">
+        <div class="mb-3">
+            <label for="email_title">Tytuł</label>
+            <input class="form-control" type="text" id="email_title" name="email_title" />
+        </div>
+        <div class="mb-3">
+            <label>Treść</label>
+            <textarea class="form-control" id="email_content" name="email_content"></textarea>
+        </div>
+
+        <input type="hidden" id="usersToInvite" name="users_ids_string" value="">
+        <div class="d-flex flex-wrap justify-content-around mb-3">
+            {% for receiver in Model.Receivers %}
+                <div class="card clickable mb-2" id="add_user_{{ receiver['id'] }}" onclick="addUserToReceivers({{ receiver['id'] }})">
+                    <div class="card-body">
+                        <p>
+                            {{ receiver["name"] }} | {{ receiver["email"] }}
+                        </p>
+                        <p class="text-muted">
+                            {{ receiver["description"] }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    <button type="submit" class="btn btn-primary">
+        Wyślij
+    </button>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function addUserToReceivers(userId) {
+            elementId = "add_user_" + userId
+            el = document.getElementById(elementId)
+            if (!el.classList.contains("user_selected")){
+                el.classList.add("user_selected")
+            }
+            else{
+                el.classList.remove("user_selected")
+            }
+        }
+
+        $("#sendEmailForm").on("submit", () => {
+            userElementsList = document.getElementsByClassName("user_selected")
+            el = $("#usersToInvite")
+            for (let item of userElementsList) {
+                el.val(el.val() + item.id.replace("add_user_", "") + ";")
+            }
+        })
+    </script>
+{% endblock %}
